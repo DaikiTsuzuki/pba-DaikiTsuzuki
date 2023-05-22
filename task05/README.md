@@ -3,8 +3,8 @@
 ![preview](preview.png)
 
 **Deadline: May 25th (Thu) at 15:00pm**
-
 ----
+
 
 ## Before Doing Assignment
 
@@ -43,7 +43,7 @@ You may need to adjust the learning rate at `line #76` to reach the convergence.
 
 Write down the converged minimum value of the energy by updating the text below.
 
-***minimum energy of the system = ????***
+***minimum energy of the system = -102.196***
 
 
 ## After Doing the Assignment
