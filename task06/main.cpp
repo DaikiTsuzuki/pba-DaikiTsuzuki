@@ -52,6 +52,14 @@ void WdWddW_Spring3(
   ddw[1][1] = n;
   ddw[0][1] = -n;
   ddw[1][0] = -n;
+
+  const double inv_length = 1.0 / length;
+  const Eigen::Matrix3d n1 = stiffness * (dC[0] * dC[0].transpose() + C * inv_length * (Eigen::Matrix3d::Identity() - u01 * u01.transpose()));
+  const Eigen::Matrix3d n2 = stiffness * (dC[1] * dC[1].transpose() + C * inv_length * (Eigen::Matrix3d::Identity() - u01 * u01.transpose()));
+  ddw[0][0] += n1;
+  ddw[1][1] += n2;
+  ddw[0][1] -= n1;
+  ddw[1][0] -= n2;
 }
 
 float step_time_mass_spring_system_with_variational_integration(
