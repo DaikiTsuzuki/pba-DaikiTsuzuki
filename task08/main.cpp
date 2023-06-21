@@ -150,20 +150,19 @@ void inflate(
     // -------------------------
     // write some code below to set values in the linear system to set constraint to specify volume
     // write some code including 'w'
+	dW(num_vtx * 3) += w - volume_trg;
     for (unsigned int inode = 0; inode < 3; ++inode) {
       for (unsigned int idim = 0; idim < 3; ++idim) {
         // write some code including `dw` and `lambda`
-		  ddW(node2vtx[inode] * 3 + idim, num_vtx * 3) += dw[inode](idim);
-		  ddW(num_vtx * 3, node2vtx[inode] * 3 + idim) += dw[inode](idim);
+		ddW(node2vtx[inode] * 3 + idim, num_vtx * 3) += lambda * dw[inode](idim);
+		ddW(num_vtx * 3, node2vtx[inode] * 3 + idim) += lambda * dw[inode](idim);
       }
     }
   }
 
 
-  ddW(num_vtx * 3, num_vtx * 3) = 0.0;
-  dW(num_vtx * 3) = (volume - volume_trg);
   // Do not forget to write one line of code here
-  // -------------------------------------------------
+  dW(num_vtx * 3) = volume - volume_trg;
   // Do not change below
   // damping for stable convergence
   for (unsigned int i = 0; i < ddW.rows(); ++i) {
